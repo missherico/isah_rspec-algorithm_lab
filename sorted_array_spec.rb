@@ -34,9 +34,9 @@ describe SortedArray do
         it_should_behave_like "yield to all elements in sorted array", :map
 
         it 'creates a new array containing the values returned by the block' do
-          expect { new_arr == sorted_array }
-          # expect { sorted_array = original_array }
-          pending "fill this spec in with a meaningful example"
+
+          sorted_array.map {|el| el + 2}.should eq [4, 5, 6, 9, 11]
+          # pending "fill this spec in with a meaningful example"
         end
       end
     end
@@ -59,8 +59,11 @@ describe SortedArray do
   describe :find do
     it_should_behave_like "yield to all elements in sorted array", :find
 
-    it "does not currently have any examples for it" do
-      pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
+    it "detects and returns the first element that matches the value" do
+  
+
+      sorted_array.find(2) {|el| el % 2 == 0}.should == 2
+      #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
     end
   end
 

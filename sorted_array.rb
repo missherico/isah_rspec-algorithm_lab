@@ -50,10 +50,15 @@ class SortedArray
   def map &block
     index = 0
     new_arr = @internal_arr.dup
-    until index == new_arr.length
-      yield new_arr[index]
-      index += 1
+    new_arr.each do |el|
+      new_arr[index] = yield el
+      index +=1
     end
+
+    # until index == new_arr.length
+    #   yield new_arr[index]
+    #   index += 1
+    # end
     new_arr
     #raise NotImplementedError.new("You need to implement the map method!")
   end
@@ -70,7 +75,7 @@ class SortedArray
 
   def find value = nil
     self.each do |el|
-      return el until yield el
+      el until yield el
     end
     return value
     #raise NotImplementedError.new("You need to implement the find method!")
