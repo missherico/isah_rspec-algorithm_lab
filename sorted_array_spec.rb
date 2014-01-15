@@ -34,6 +34,8 @@ describe SortedArray do
         it_should_behave_like "yield to all elements in sorted array", :map
 
         it 'creates a new array containing the values returned by the block' do
+          expect { new_arr == sorted_array }
+          # expect { sorted_array = original_array }
           pending "fill this spec in with a meaningful example"
         end
       end
