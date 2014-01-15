@@ -44,31 +44,42 @@ describe SortedArray do
     describe "that update the original array" do
       describe :map! do
         it 'the original array should be updated' do
-          pending "fill this spec in with a meaningful example"
+          sorted_array.map! { |el| el}.should == [2,3,4,7,9]
+          # pending "fill this spec in with a meaningful example"
         end
 
         it_should_behave_like "yield to all elements in sorted array", :map!
 
         it 'should replace value of each element with the value returned by block' do
-          pending "this is just the same as the example above"
+          
+        sorted_array.map! { |n| 2 * n}.should_not == [2, 3, 4, 7, 9]
+
+          #pending "this is just the same as the example above"
         end
       end
     end
   end
 
   describe :find do
-    it_should_behave_like "yield to all elements in sorted array", :find
+    #this line is wrong:
+    #it_should_behave_like "yield to all elements in sorted array", :find
+    
+    it "iterates through elements and if not there, return nil" do
+
+      sorted_array.find{|el| el == 17}.should == nil
+
+    end
 
     it "detects and returns the first element that matches the value" do
-  
-
-      sorted_array.find(2) {|el| el % 2 == 0}.should == 2
+      
+      sorted_array.find{ |el| el % 3 == 0 }.should eq 3
       #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
     end
   end
 
   describe :inject do
-    it_should_behave_like "yield to all elements in sorted array", :inject
+    #this line is wrong:
+    #it_should_behave_like "yield to all elements in sorted array", :inject
 
     it "does not currently have any examples for it" do
       pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"

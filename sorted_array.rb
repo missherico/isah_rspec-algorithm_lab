@@ -49,8 +49,8 @@ class SortedArray
 
   def map &block
     index = 0
-    new_arr = @internal_arr.dup
-    new_arr.each do |el|
+    new_arr = []
+    each do |el|
       new_arr[index] = yield el
       index +=1
     end
@@ -65,25 +65,28 @@ class SortedArray
 
   def map! &block
     index = 0
-    until index == @internal_arr.length
-      yield @internal_arr[index]
-      index +=1
+    @internal_arr.each do |el|
+      @internal_arr[index] = yield el
+      index += 1
     end
     @internal_arr
     #raise NotImplementedError.new("You need to implement the map! method!")
   end
 
-  def find value = nil
-    self.each do |el|
-      el until yield el
+  def find &block
+    @internal_arr.each do |el|
+      return el if yield el
     end
-    return value
+      nil
+    # return el
     #raise NotImplementedError.new("You need to implement the find method!")
   end
 
-  def inject acc=nil, &block
-    # @internal_arr.each do |el| 
-      
+  def inject (acc=nil, &block)
+     @internal_arr.each do |el|
+      acc = yield acc, el
+    end
+    acc
 
     raise NotImplementedError.new("You need to implement the inject method!")
   end
